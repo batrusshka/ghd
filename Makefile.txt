@@ -1,0 +1,20 @@
+CC = gcc
+CFLAGS = -Wall -g
+TARGET = buba
+
+all: $(TARGET)
+
+
+$(TARGET): lab2.o
+	$(CC) $(CFLAGS) -o $(TARGET) lab2.o
+lab2.o: lab2.c
+	$(CC) $(CFLAGS) -c lab2.c
+
+clean:
+	rm -f *.o $(TARGET)
+
+test:
+	./$(TARGET) input.txt -r "old text" "new text"
+	./$(TARGET) input.txt -d "text to delete"
+	./$(TARGET) input.txt -i -f "insert text front"
+	./$(TARGET) input.txt -i -b "insert text back"
